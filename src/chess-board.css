@@ -1,0 +1,20 @@
+.chess-board {
+    display: flex;
+    width: 800px;
+    border: 7.5px solid black;
+}
+
+.light-square, .dark-square {
+    display: grid;
+
+    width: 100px;
+    height: 100px;
+}
+
+.light-square {
+    background-color: white;
+}
+
+.dark-square {
+    background-color: gray;
+}
