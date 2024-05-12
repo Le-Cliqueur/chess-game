@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
+import './chess-board.css'
+import knight from './white-knight.png'
+import pawn from './white-pawn.png'
 
-function Square({color, line, column}) {
 
-    function squareLocation() {
+function Square({piece, squares, color, line, column}) {
+
+  const [imgPiece, setImgPiece] = useState(piece)
+
+    function squareLocation(e) {
         console.log(String.fromCharCode(column + 64) + '' + line)
+        console.log(squares)
+        setImgPiece(pawn)
     }
 
+
   return (
-
-    <div onClick={() => squareLocation()} className={`${color}-square`}>
-
+    <div onClick={(e) => squareLocation(e)} className={`${color}-square`}>
+      <img className='image' src={imgPiece} alt="chess-piece" />
     </div>
   )
 }
