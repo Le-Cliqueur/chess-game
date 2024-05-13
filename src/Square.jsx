@@ -10,8 +10,7 @@ function Square({piece, squares, color, line, column}) {
 
     function squareLocation(e) {
         console.log(String.fromCharCode(column + 64) + '' + line)
-        console.log(squares)
-        setImgPiece(pawn)
+        setImgPiece(null)
     }
 
 
