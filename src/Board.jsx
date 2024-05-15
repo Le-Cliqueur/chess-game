@@ -33,6 +33,8 @@ function Board() {
 
     // Choose the piece type in that loop
     const [myTuple, setMyTuple] = useState({x: null, y: null})
+    const [pieceArr, setPieceArr] = useState(pieces)
+    
     let pieceType = null
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -56,9 +58,9 @@ function Board() {
             pieces[i][j] = pieceType
 
             if ((i % 2 == 1 && j % 2 == 0) || (i % 2 == 0 && j % 2 == 1)) {
-                squares[i][j] = <Square pieces={pieces} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'dark'} line={j} column={i}></Square>
+                squares[i][j] = <Square pieceArr={pieceArr} setPieceArr={setPieceArr} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'dark'} line={j} column={i}></Square>
             } else {
-                squares[i][j] = <Square pieces={pieces} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'light'} line={j} column={i}></Square>
+                squares[i][j] = <Square pieceArr={pieceArr} setPieceArr={setPieceArr} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'light'} line={j} column={i}></Square>
             }
         }
     }

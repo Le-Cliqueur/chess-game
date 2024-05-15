@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import './chess-board.css'
-import knight from './white-knight.png'
-import pawn from './white-pawn.png'
 
 
-function Square({pieces, piece, myTuple, setMyTuple, color, line, column}) {
+function Square({pieceArr, setPieceArr, myTuple, setMyTuple, color, line, column}) {
 
-  const [imgPiece, setImgPiece] = useState(pieces[column][line])
-  const [imgPieces, setImgPieces] = useState(pieces)
   
 
     function squareLocation(e) {
@@ -15,27 +11,23 @@ function Square({pieces, piece, myTuple, setMyTuple, color, line, column}) {
         // Need to pass pieces ans a setter for the pieces tab from Board to Square
 
         if (myTuple.x !== null && myTuple.y !== null) {
-          console.log('first')
-          setImgPiece(pieces[myTuple.y][myTuple.x])
-          const newArr = [...imgPieces]
-          newArr[0][0] = imgPieces[myTuple.y][myTuple.x]
-          console.log(newArr)
-          setImgPieces(newArr)
-          console.log(pieces)
+
+          const newArr = [...pieceArr]
+          newArr[column][line] = pieceArr[myTuple.y][myTuple.x]
+          newArr[myTuple.y][myTuple.x] = null
+          
+          setPieceArr(newArr)
 
           setMyTuple({x: null, y: null})
         } else {
           setMyTuple({x: line, y: column})
-          console.log(pieces[column][line])
-
         }
-        console.log(myTuple)
     }
 
 
   return (
     <div onClick={(e) => squareLocation(e)} className={`${color}-square`}>
-      <img className='image' src={imgPiece} alt="chess-piece" />
+      <img className='image' src={pieceArr[column][line]} alt="chess-piece" />
     </div>
   )
 }
