@@ -4,30 +4,35 @@ import './chess-board.css'
 
 function Square({pieceArr, setPieceArr, myTuple, setMyTuple, color, line, column}) {
 
-  
+  function canMove(pawn) {
+    if (myTuple.y == column && line == (myTuple.x)+1) {
+      return true
+    } else {
+      return false
+    }
+  }
 
     function squareLocation(e) {
-        console.log(String.fromCharCode(column + 64) + '' + line)
-        // Need to pass pieces ans a setter for the pieces tab from Board to Square
+      console.log(e.target)
+      
+      if (myTuple.x !== null && myTuple.y !== null /*&& canMove(pieceArr[column][line])*/) {
 
-        if (myTuple.x !== null && myTuple.y !== null) {
+        const newArr = [...pieceArr]
+        newArr[column][line] = pieceArr[myTuple.y][myTuple.x]
+        newArr[myTuple.y][myTuple.x] = null
+        
+        setPieceArr(newArr)
 
-          const newArr = [...pieceArr]
-          newArr[column][line] = pieceArr[myTuple.y][myTuple.x]
-          newArr[myTuple.y][myTuple.x] = null
-          
-          setPieceArr(newArr)
-
-          setMyTuple({x: null, y: null})
-        } else {
-          setMyTuple({x: line, y: column})
-        }
+        setMyTuple({x: null, y: null})
+      } else {
+        setMyTuple({x: line, y: column})
+      }
     }
 
 
   return (
     <div onClick={(e) => squareLocation(e)} className={`${color}-square`}>
-      <img className='image' src={pieceArr[column][line]} alt="chess-piece" />
+      <div>{pieceArr[column][line]}</div>
     </div>
   )
 }

@@ -4,6 +4,9 @@ import Square from './Square'
 import knight from './white-knight.png'
 import pawn from './white-pawn.png'
 import rook from './white-rook.png'
+import Pawn from './Pawn'
+import Knight from './Knight'
+import Rook from './Rook'
 
 
 
@@ -35,27 +38,25 @@ function Board() {
     const [myTuple, setMyTuple] = useState({x: null, y: null})
     const [pieceArr, setPieceArr] = useState(pieces)
     
-    let pieceType = null
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             if (j == 1 || j == 6) {
-                pieceType = pawn
+                pieces[i][j] = <Pawn color={"ok"}></Pawn>
             } else if ((j == 0 || j == 7) && (i == 1 || i == 6)) {
-                pieceType = knight
+                pieces[i][j] = <Knight color={"ok"}></Knight>
             } else if ((j == 0 || j == 7) && (i == 0 || i == 7)) {
-                pieceType = rook // Bishop
+                pieces[i][j] = <Rook color={"ok"}></Rook>
             } else if ((j == 0 || j == 7) && (i == 2 || i == 5)) {
-                pieceType = rook
+                pieces[i][j] = rook // Bishop
             } else if ((j == 0 || j == 7) && (i == 4)) {
-                pieceType = pawn // KING
+                pieces[i][j] = pawn // KING
             } else if ((j == 0 || j == 7) && (i == 3)) {
-                pieceType = knight // QUEEN
+                pieces[i][j] = knight // QUEEN
             } 
             else {
-                pieceType = null
+                pieces[i][j] = null
             }
 
-            pieces[i][j] = pieceType
 
             if ((i % 2 == 1 && j % 2 == 0) || (i % 2 == 0 && j % 2 == 1)) {
                 squares[i][j] = <Square pieceArr={pieceArr} setPieceArr={setPieceArr} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'dark'} line={j} column={i}></Square>
