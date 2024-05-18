@@ -1,6 +1,6 @@
 import React from 'react'
-import white_pawn from './white-pawn.png'
-import black_pawn from './white-pawn.png'
+import white_pawn from '../images/white-pawn.png'
+import black_pawn from '../images/black-pawn.png'
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import white_knight from './white-knight.png'
-import black_knight from './white-knight.png'
+import white_knight from '../images/white-knight.png'
+import black_knight from '../images/black-knight.png'
 
 
 

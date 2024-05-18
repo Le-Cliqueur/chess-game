@@ -1,6 +1,6 @@
 import React from 'react'
-import white_rook from './white-rook.png'
-import black_rook from './white-rook.png'
+import white_rook from '../images/white-rook.png'
+import black_rook from '../images/black-rook.png'
 
 
 

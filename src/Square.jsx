@@ -5,18 +5,24 @@ import './chess-board.css'
 function Square({pieceArr, setPieceArr, myTuple, setMyTuple, color, line, column}) {
 
   function canMove(pawn) {
-    if (myTuple.y == column && line == (myTuple.x)+1) {
+    if (myTuple.y !== null && myTuple.x !== null) {
       return true
     } else {
       return false
     }
   }
 
-    function squareLocation(e) {
-      console.log(e.target)
-      
-      if (myTuple.x !== null && myTuple.y !== null /*&& canMove(pieceArr[column][line])*/) {
-
+  function squareLocation(e) {
+    console.log(myTuple)
+    if (myTuple.x == null && myTuple.y == null && pieceArr[column][line] != null) {
+      setMyTuple({x: line, y: column})
+      console.log('mooove')
+    }
+    if (myTuple.x !== null && myTuple.y !== null && myTuple !== null /*&& canMove(pieceArr[column][line])*/) {
+      if (myTuple.x == line && myTuple.y == column) {
+        console.log('same piece')
+        setMyTuple({x: null, y: null})
+      } else{
         const newArr = [...pieceArr]
         newArr[column][line] = pieceArr[myTuple.y][myTuple.x]
         newArr[myTuple.y][myTuple.x] = null
@@ -24,10 +30,9 @@ function Square({pieceArr, setPieceArr, myTuple, setMyTuple, color, line, column
         setPieceArr(newArr)
 
         setMyTuple({x: null, y: null})
-      } else {
-        setMyTuple({x: line, y: column})
       }
     }
+  }
 
 
   return (

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './chess-board.css'
 import Square from './Square'
-import knight from './white-knight.png'
-import pawn from './white-pawn.png'
-import rook from './white-rook.png'
-import Pawn from './Pawn'
-import Knight from './Knight'
-import Rook from './Rook'
+
+import Pawn from './pieces/Pawn'
+import Knight from './pieces/Knight'
+import Rook from './pieces/Rook'
+import Bishop from './pieces/Bishop'
+import Queen from './pieces/Queen'
+import King from './pieces/King'
 
 
 
@@ -37,21 +38,26 @@ function Board() {
     // Choose the piece type in that loop
     const [myTuple, setMyTuple] = useState({x: null, y: null})
     const [pieceArr, setPieceArr] = useState(pieces)
-    
+    let color = ''
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
+            if (j >= 6) {
+                color = 'white'
+            } else {
+                color = 'black'
+            }
             if (j == 1 || j == 6) {
-                pieces[i][j] = <Pawn color={"ok"}></Pawn>
+                pieces[i][j] = <Pawn color={color}></Pawn>
             } else if ((j == 0 || j == 7) && (i == 1 || i == 6)) {
-                pieces[i][j] = <Knight color={"ok"}></Knight>
+                pieces[i][j] = <Knight color={color}></Knight>
             } else if ((j == 0 || j == 7) && (i == 0 || i == 7)) {
-                pieces[i][j] = <Rook color={"ok"}></Rook>
+                pieces[i][j] = <Rook color={color}></Rook>
             } else if ((j == 0 || j == 7) && (i == 2 || i == 5)) {
-                pieces[i][j] = rook // Bishop
+                pieces[i][j] = <Bishop color={color}></Bishop> // Bishop
             } else if ((j == 0 || j == 7) && (i == 4)) {
-                pieces[i][j] = pawn // KING
+                pieces[i][j] = <King color={color}></King> // KING
             } else if ((j == 0 || j == 7) && (i == 3)) {
-                pieces[i][j] = knight // QUEEN
+                pieces[i][j] = <Queen color={color}></Queen> // QUEEN
             } 
             else {
                 pieces[i][j] = null
