@@ -38,26 +38,31 @@ function Board() {
     // Choose the piece type in that loop
     const [myTuple, setMyTuple] = useState({x: null, y: null})
     const [pieceArr, setPieceArr] = useState(pieces)
+    const [whiteToMove, setWhiteToMove] = useState(true)
+
     let color = ''
+    let isWhite = true
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             if (j >= 6) {
                 color = 'white'
+                isWhite = true
             } else {
                 color = 'black'
+                isWhite = false
             }
             if (j == 1 || j == 6) {
-                pieces[i][j] = <Pawn color={color}></Pawn>
+                pieces[i][j] = <Pawn color={color} isWhite={isWhite}></Pawn>
             } else if ((j == 0 || j == 7) && (i == 1 || i == 6)) {
-                pieces[i][j] = <Knight color={color}></Knight>
+                pieces[i][j] = <Knight color={color} isWhite={isWhite}></Knight>
             } else if ((j == 0 || j == 7) && (i == 0 || i == 7)) {
-                pieces[i][j] = <Rook color={color}></Rook>
+                pieces[i][j] = <Rook color={color} isWhite={isWhite}></Rook>
             } else if ((j == 0 || j == 7) && (i == 2 || i == 5)) {
-                pieces[i][j] = <Bishop color={color}></Bishop> // Bishop
+                pieces[i][j] = <Bishop color={color} isWhite={isWhite}></Bishop> // Bishop
             } else if ((j == 0 || j == 7) && (i == 4)) {
-                pieces[i][j] = <King color={color}></King> // KING
+                pieces[i][j] = <King color={color} isWhite={isWhite}></King> // KING
             } else if ((j == 0 || j == 7) && (i == 3)) {
-                pieces[i][j] = <Queen color={color}></Queen> // QUEEN
+                pieces[i][j] = <Queen color={color} isWhite={isWhite}></Queen> // QUEEN
             } 
             else {
                 pieces[i][j] = null
@@ -65,9 +70,9 @@ function Board() {
 
 
             if ((i % 2 == 1 && j % 2 == 0) || (i % 2 == 0 && j % 2 == 1)) {
-                squares[i][j] = <Square pieceArr={pieceArr} setPieceArr={setPieceArr} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'dark'} line={j} column={i}></Square>
+                squares[i][j] = <Square whiteToMove={whiteToMove} setWhiteToMove={setWhiteToMove} pieceArr={pieceArr} setPieceArr={setPieceArr} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'dark'} line={j} column={i}></Square>
             } else {
-                squares[i][j] = <Square pieceArr={pieceArr} setPieceArr={setPieceArr} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'light'} line={j} column={i}></Square>
+                squares[i][j] = <Square whiteToMove={whiteToMove} setWhiteToMove={setWhiteToMove} pieceArr={pieceArr} setPieceArr={setPieceArr} piece={pieces[i][j]} myTuple={myTuple} setMyTuple={setMyTuple} key={j} color={'light'} line={j} column={i}></Square>
             }
         }
     }
